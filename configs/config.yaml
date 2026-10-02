@@ -1,0 +1,44 @@
+data:
+  raw_path: "data/Synthetic_Financial_datasets_log.csv"
+  relevant_types:
+    - "TRANSFER"
+    - "CASH_OUT"
+  step_col: "step"
+  target_col: "isFraud"
+  id_cols:
+    - "nameOrig"
+    - "nameDest"
+    - "isFlaggedFraud"
+  temporal_split:
+    train_ratio: 0.70    # approx steps 1 - 520 (~21 days)
+    val_ratio: 0.15      # approx steps 521 - 632 (~5 days)
+    test_ratio: 0.15     # approx steps 633 - 744 (~5 days)
+
+financial_costs:
+  cost_false_positive: 25.0    # Operational friction / manual review cost ($)
+  cost_false_negative_fixed: 50.0  # Fixed operational fraud investigation cost ($) + transaction amount
+
+models:
+  random_state: 42
+  artifacts_dir: "artifacts"
+  models_dir: "artifacts/models"
+  plots_dir: "artifacts/plots"
+  metrics_dir: "artifacts/metrics"
+  
+  lightgbm:
+    n_estimators: 200
+    learning_rate: 0.05
+    max_depth: 7
+    num_leaves: 63
+    subsample: 0.8
+    colsample_bytree: 0.8
+    n_jobs: -1
+    
+  xgboost:
+    n_estimators: 150
+    learning_rate: 0.08
+    max_depth: 6
+    subsample: 0.8
+    colsample_bytree: 0.8
+    n_jobs: -1
+    tree_method: "hist"

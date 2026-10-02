@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Large Datasets & Archives
+*.csv
+*.zip
+*.tar.gz
+Synthetic_Financial_datasets_log.csv
+archive.zip
+data/*.csv
+data/*.zip
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Jupyter & IDE
+.ipynb_checkpoints
+.vscode/
+.idea/
+*.swp
+
+# Artifacts & Output Logs
+artifacts/plots/*.png
+artifacts/metrics/*.json
+artifacts/models/*.joblib
+artifacts/models/*_meta.json
+*.log
+
+# Keep artifact directory structure
+!.gitkeep
