@@ -34,11 +34,14 @@ def compute_metrics(
 
     precision_vals, recall_vals, _ = precision_recall_curve(y_true, y_prob)
     pr_auc = auc(recall_vals, precision_vals)
-    roc_auc = roc_auc_score(y_true, y_prob)
+    try:
+        roc_auc = float(roc_auc_score(y_true, y_prob))
+    except ValueError:
+        roc_auc = float("nan")
     brier = brier_score_loss(y_true, y_prob)
 
-    cm = confusion_matrix(y_true, y_pred)
-    tn, fp, fn, tp = cm.ravel() if cm.shape == (2, 2) else (0, 0, 0, 0)
+    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
+    tn, fp, fn, tp = cm.ravel()
 
     return {
         "threshold": float(threshold),

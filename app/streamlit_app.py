@@ -258,7 +258,7 @@ if nav == "🚀 Real-Time Transaction Simulator":
                 st.markdown(
                     "**Risk Tier:**<br><span class='risk-high'>HIGH</span>", unsafe_allow_html=True
                 )
-            elif prob >= 0.20:
+            elif prob >= max(0.10, thresh * 0.5):
                 st.markdown(
                     "**Risk Tier:**<br><span class='risk-medium'>MEDIUM</span>",
                     unsafe_allow_html=True,

@@ -14,6 +14,9 @@ services:
       interval: 15s
       timeout: 5s
       retries: 3
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs:ro
     restart: unless-stopped
 
   dashboard:
@@ -24,6 +27,9 @@ services:
     ports:
       - "8501:8501"
     command: ["streamlit", "run", "app/streamlit_app.py", "--server.port", "8501", "--server.headless", "true"]
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs:ro
     depends_on:
       api:
         condition: service_healthy

@@ -27,6 +27,16 @@ class TransactionPayload(BaseModel):
     newbalanceDest: float = Field(
         default=0.0, ge=0, description="New balance of recipient after transaction"
     )
+    origTxCount: int | None = Field(
+        default=None,
+        ge=1,
+        description="Optional pre-aggregated cumulative transaction count for origin",
+    )
+    destTxCount: int | None = Field(
+        default=None,
+        ge=1,
+        description="Optional pre-aggregated cumulative transaction count for destination",
+    )
 
 
 class DecisionFactor(BaseModel):

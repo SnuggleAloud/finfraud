@@ -33,13 +33,25 @@ def compute_temporal_and_velocity_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # 3. Entity profile & velocity features
     # Cumulative transaction counts up to current record (leak-free)
-    if "nameOrig" in data.columns:
-        data["origTxCount"] = data.groupby("nameOrig").cumcount().astype("int16") + 1
+    if "origTxCount" in data.columns and data["origTxCount"].notnull().all():
+        data["origTxCount"] = data["origTxCount"].astype("int16")
+    elif "nameOrig" in data.columns:
+        computed_orig = data.groupby("nameOrig").cumcount().astype("int16") + 1
+        if "origTxCount" in data.columns:
+            data["origTxCount"] = data["origTxCount"].fillna(computed_orig).astype("int16")
+        else:
+            data["origTxCount"] = computed_orig
     else:
         data["origTxCount"] = 1
 
-    if "nameDest" in data.columns:
-        data["destTxCount"] = data.groupby("nameDest").cumcount().astype("int16") + 1
+    if "destTxCount" in data.columns and data["destTxCount"].notnull().all():
+        data["destTxCount"] = data["destTxCount"].astype("int16")
+    elif "nameDest" in data.columns:
+        computed_dest = data.groupby("nameDest").cumcount().astype("int16") + 1
+        if "destTxCount" in data.columns:
+            data["destTxCount"] = data["destTxCount"].fillna(computed_dest).astype("int16")
+        else:
+            data["destTxCount"] = computed_dest
     else:
         data["destTxCount"] = 1
 

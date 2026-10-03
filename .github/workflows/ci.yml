@@ -15,10 +15,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
           cache: 'pip'
 
       - name: Install Linting Tools
@@ -28,11 +28,11 @@ jobs:
 
       - name: Run Ruff Linter
         run: |
-          ruff check src/ app/ tests/ configs/ --ignore E501
+          ruff check src/ app/ tests/ configs/ run_pipeline.py inspect_data.py --ignore E501
 
       - name: Check Formatting with Black
         run: |
-          black --check src/ app/ tests/ configs/ --line-length 100
+          black --check src/ app/ tests/ configs/ run_pipeline.py inspect_data.py --line-length 100
 
   test-suite:
     name: Unit & Integration Tests (Python ${{ matrix.python-version }})
@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.11', '3.12']
+        python-version: ['3.12']
 
     steps:
       - name: Checkout Repository

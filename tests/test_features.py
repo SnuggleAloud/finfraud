@@ -92,3 +92,13 @@ def test_feature_pipeline_schema(sample_transaction_df):
     assert y is not None
     assert len(y) == 3
     assert not X.isnull().any().any()
+
+
+def test_custom_velocity_override(sample_transaction_df):
+    df_custom = sample_transaction_df.copy()
+    df_custom["origTxCount"] = [15, 20, 25]
+    df_custom["destTxCount"] = [100, 200, 300]
+
+    df_feat = compute_temporal_and_velocity_features(df_custom)
+    assert list(df_feat["origTxCount"]) == [15, 20, 25]
+    assert list(df_feat["destTxCount"]) == [100, 200, 300]

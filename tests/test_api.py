@@ -61,3 +61,25 @@ def test_predict_endpoint_legit():
     data = response.json()
     assert data["decision"] == "APPROVE"
     assert data["risk_tier"] == "LOW"
+
+
+def test_predict_endpoint_with_custom_velocity():
+    payload = {
+        "step": 50,
+        "type": "TRANSFER",
+        "amount": 1000.0,
+        "nameOrig": "C1029384",
+        "oldbalanceOrg": 1000.0,
+        "newbalanceOrig": 0.0,
+        "nameDest": "C9981273",
+        "oldbalanceDest": 0.0,
+        "newbalanceDest": 0.0,
+        "origTxCount": 10,
+        "destTxCount": 5,
+    }
+    response = client.post("/v1/predict", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert "fraud_probability" in data
+    assert "risk_tier" in data
+    assert "decision" in data

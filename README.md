@@ -131,7 +131,7 @@ docker compose up --build
 
 The workflow defined in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) triggers on pushes and pull requests to `main`/`master`:
 1. **Code Quality & Linting:** Automated checks using `ruff` and `black`.
-2. **Multi-Version Matrix Testing:** Runs the full unit & integration test suite on Python `3.11` and `3.12`.
+2. **Automated Test Suite:** Runs the full unit & integration test suite on Python `3.12`.
 3. **Container Build Verification:** Builds the Docker image via Buildx to guarantee deployment reproducibility.
 
 ---

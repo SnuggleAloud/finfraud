@@ -11,7 +11,7 @@ from typing import Any
 
 import joblib
 import pandas as pd
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.schemas import (
@@ -84,8 +84,9 @@ def root():
 
 
 @app.get("/health", response_model=HealthResponse, tags=["Health"])
-def health():
+def health(response: Response):
     if state["model"] is None:
+        response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
         return HealthResponse(
             status="uninitialized",
             model_name="none",
@@ -125,11 +126,14 @@ def predict_transaction(payload: TransactionPayload):
     risk_score = int(prob * 1000)
 
     # Decision and Risk Tier Logic
-    if prob >= threshold:
-        decision = "DECLINE" if prob >= 0.85 else "MANUAL_REVIEW"
-        risk_tier = "CRITICAL" if prob >= 0.85 else "HIGH"
-    elif prob >= 0.20:
+    if prob >= 0.85:
+        decision = "DECLINE"
+        risk_tier = "CRITICAL"
+    elif prob >= threshold:
         decision = "MANUAL_REVIEW"
+        risk_tier = "HIGH"
+    elif prob >= max(0.10, threshold * 0.5):
+        decision = "APPROVE"
         risk_tier = "MEDIUM"
     else:
         decision = "APPROVE"
