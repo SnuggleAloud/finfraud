@@ -1,0 +1,73 @@
+{
+  "Rule-Based Baseline (isFlaggedFraud)": {
+    "threshold": 0.5,
+    "pr_auc": 0.5108024691358025,
+    "roc_auc": 0.5,
+    "brier_score": 0.021604938271604937,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "true_positives": 0,
+    "false_positives": 0,
+    "true_negatives": 634,
+    "false_negatives": 14,
+    "model_name": "Rule-Based Baseline (isFlaggedFraud)"
+  },
+  "Logistic Regression (Balanced)": {
+    "threshold": 0.5,
+    "pr_auc": 0.9042660570762452,
+    "roc_auc": 0.9626590269010391,
+    "brier_score": 0.028731599365199437,
+    "precision": 0.28125,
+    "recall": 0.9642857142857143,
+    "f1": 0.43548387096774194,
+    "true_positives": 27,
+    "false_positives": 69,
+    "true_negatives": 1402,
+    "false_negatives": 1,
+    "model_name": "Logistic Regression"
+  },
+  "XGBoost (Hist Gradient Boosting)": {
+    "threshold": 0.5,
+    "pr_auc": 0.9954637096774193,
+    "roc_auc": 0.9999028843352433,
+    "brier_score": 0.0006869319477118552,
+    "precision": 1.0,
+    "recall": 0.9642857142857143,
+    "f1": 0.9818181818181818,
+    "true_positives": 27,
+    "false_positives": 0,
+    "true_negatives": 1471,
+    "false_negatives": 1,
+    "model_name": "XGBoost"
+  },
+  "LightGBM (Gradient Boosting)": {
+    "threshold": 0.5,
+    "pr_auc": 1.0,
+    "roc_auc": 1.0,
+    "brier_score": 8.522506527864666e-05,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "true_positives": 28,
+    "false_positives": 0,
+    "true_negatives": 1471,
+    "false_negatives": 0,
+    "model_name": "LightGBM"
+  },
+  "LightGBM (Production Test)": {
+    "threshold": 0.32676767676767676,
+    "pr_auc": 0.9301380530039067,
+    "roc_auc": 0.9321766561514195,
+    "brier_score": 0.0034139209429582687,
+    "precision": 0.9285714285714286,
+    "recall": 0.9285714285714286,
+    "f1": 0.9285714285714286,
+    "true_positives": 13,
+    "false_positives": 1,
+    "true_negatives": 633,
+    "false_negatives": 1,
+    "model_name": "LightGBM (Production Optimized)",
+    "optimal_threshold": 0.32676767676767676
+  }
+}

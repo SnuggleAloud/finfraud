@@ -37,5 +37,11 @@ artifacts/models/*.joblib
 artifacts/models/*_meta.json
 *.log
 
-# Keep artifact directory structure
+# Keep baseline model and evaluation artifacts for CI and turnkey deployment
+!artifacts/models/lightgbm_best.joblib
+!artifacts/models/lightgbm_best_meta.json
+!artifacts/metrics/benchmark_results.json
+!artifacts/plots/lightgbm_pr_curve.png
+!artifacts/plots/lightgbm_cost_curve.png
+!artifacts/plots/shap_summary.png
 !.gitkeep

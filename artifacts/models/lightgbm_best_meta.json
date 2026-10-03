@@ -1,0 +1,42 @@
+{
+  "model_name": "lightgbm_best",
+  "feature_columns": [
+    "step",
+    "amount",
+    "oldbalanceOrg",
+    "newbalanceOrig",
+    "oldbalanceDest",
+    "newbalanceDest",
+    "errorBalanceOrig",
+    "errorBalanceDest",
+    "isMerchantDest",
+    "isOrigEmptied",
+    "isDestZeroBefore",
+    "isDestZeroAfter",
+    "origAmountRatio",
+    "hourOfDay",
+    "dayOfWeek",
+    "isNightTime",
+    "logAmount",
+    "isZeroAmount",
+    "origTxCount",
+    "destTxCount",
+    "type_TRANSFER"
+  ],
+  "optimal_threshold": 0.32676767676767676,
+  "metrics": {
+    "threshold": 0.32676767676767676,
+    "pr_auc": 0.9301380530039067,
+    "roc_auc": 0.9321766561514195,
+    "brier_score": 0.0034139209429582687,
+    "precision": 0.9285714285714286,
+    "recall": 0.9285714285714286,
+    "f1": 0.9285714285714286,
+    "true_positives": 13,
+    "false_positives": 1,
+    "true_negatives": 633,
+    "false_negatives": 1,
+    "model_name": "LightGBM (Production Optimized)",
+    "optimal_threshold": 0.32676767676767676
+  }
+}
