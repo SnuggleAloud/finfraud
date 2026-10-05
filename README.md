@@ -3,7 +3,8 @@
 An end-to-end Machine Learning and MLOps system built to detect fraudulent financial transactions in real time, minimize operational dollar loss through cost-sensitive threshold optimization, and provide interpretable SHAP decision reasoning for fraud investigators.
 
 > 📄 **Complete Project Architecture & Phase Breakdown:** [PROJECT_PLAN.md](PROJECT_PLAN.md)  
-> 📓 **Interactive Jupyter Walkthrough:** [notebooks/finfraud_end_to_end_walkthrough.ipynb](notebooks/finfraud_end_to_end_walkthrough.ipynb)
+> 📓 **Interactive Jupyter Walkthrough:** [notebooks/finfraud_end_to_end_walkthrough.ipynb](notebooks/finfraud_end_to_end_walkthrough.ipynb)  
+> 💾 **Dataset Source:** [Kaggle - Financial Fraud Detection Dataset](https://www.kaggle.com/datasets/sriharshaeedala/financial-fraud-detection-dataset)
 
 ---
 
@@ -43,6 +44,15 @@ graph TD
 | **Logistic Regression (Balanced)** | 1.83% | 99.40% | 0.9329 | 0.9961 | 0.0359 | Class Weights |
 | **XGBoost (Hist Gradient Boosting)** | 98.81% | 99.91% | 1.0000 | 1.0000 | 0.9936 | Scale Pos Weight |
 | **LightGBM (Production Model)** | **100.00%** | **100.00%** | **1.0000** | **1.0000** | **1.0000** | **Cost-Optimal Threshold ($p^* = 0.020$)** |
+
+## 💾 Dataset & Sourcing
+
+The raw dataset used in this project is sourced from Kaggle:
+* **Dataset URL:** [Financial Fraud Detection Dataset on Kaggle](https://www.kaggle.com/datasets/sriharshaeedala/financial-fraud-detection-dataset)
+* **Local Data Files:**
+  * `data/Synthetic_Financial_datasets_log.csv` (Raw extracted transactions log, ~493 MB)
+  * `data/archive.zip` (Compressed dataset archive, ~186 MB)
+* **Domain Context:** Synthetic Financial Transactions Log (PaySim) simulating mobile financial transactions across 744 time steps (~30 days).
 
 ---
 
